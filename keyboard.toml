@@ -1,35 +1,47 @@
 [keyboard]
-name = "rmk-minimi"
-product_name = "rmk-minimi"
-vendor_id = 0x4c4b
-product_id = 0x4643
-manufacturer = "RMK"
+name = "MiniMi"
+product_name = "MiniMi"
+vendor_id = 0xa1ca
+product_id = 0xa323
+manufacturer = "AkaTech"
 chip = "nrf52840"
 
 [matrix]
 # Row and col pins are mandatory
-row_pins = ["P1_04", "P1_06", "P0_31", "P1_11"]
-col_pins = ["P0_02", "P1_15", "P1_13"]
+row_pins = ["P0_12", "P1_06", "P0_03", "P0_31"]
+col_pins = ["P0_30", "P0_29", "P0_02", "P1_13", "P0_28", "P1_04", "P1_02", "P0_22", "P0_20", "P0_17", "P0_15"]
 # RMK uses col2row as the default matrix diode direction, if you want to use a row2col matrix, add `row2col = true`
 # row2col = true
 
 [layout]
 rows = 4
-cols = 3
-layers = 2
+cols = 11
+layers = 4
 keymap = [
     [
-        ["A", "B", "C"],
-        ["Kc1", "Kc2", "Kc3"],
-        ["LCtrl", "MO(1)", "LShift"],
-        ["OSL(1)", "LT(2, Kc9)", "LM(1, LShift | LGui)"]
+        ["Escape", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+        ["Tab", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Enter"],
+        ["LShift", "Z", "X", "C", "V", "B", "N", "M", "Slash", "Up", "RShift"],
+        ["LCtrl", "LGui", "LAlt", "MO(1)", "Space", "No", "MO(2)", "Left", "Down", "Right", "Backspace"]
     ],
     [
-        ["TO(1)", "TT(1)", "TG(2)"],
-        ["DF(1)", "_", "_"],
-        ["_", "_", "_"],
-        ["_", "_", "_"]
+        ["Grave", "Kc1", "Kc2", "Kc3", "Kc4", "Kc5", "Kc6", "Kc7", "Kc8", "Kc9", "Kc0"],
+        ["Tab", "No", "No", "No", "No", "Minus", "Equal", "LeftBracket", "RightBracket", "Backslash", "Enter"],
+        ["LShift", "No", "No", "No", "No", "No", "Semicolon", "Quote", "Comma", "Dot", "RShift"],
+        ["LCtrl", "LGui", "LAlt", "MO(1)", "Space", "No", "MO(2)", "RAlt", "RGui", "RCtrl", "Backspace"]
     ],
+    [
+        ["SHIFTED(Grave)", "SHIFTED(Kc1)", "SHIFTED(Kc2)", "SHIFTED(Kc3)", "SHIFTED(Kc4)", "SHIFTED(Kc5)", "SHIFTED(Kc6)", "SHIFTED(Kc7)", "SHIFTED(Kc8)", "SHIFTED(Kc9)", "SHIFTED(Kc0)"],
+        ["CapsLock", "No", "No", "No", "No", "SHIFTED(Minus)", "SHIFTED(Equal)", "SHIFTED(LeftBracket)", "SHIFTED(RightBracket)", "SHIFTED(Backslash)", "Enter"],
+        ["LShift", "No", "No", "No", "No", "No", "SHIFTED(Semicolon)", "SHIFTED(Quote)", "SHIFTED(Comma)", "SHIFTED(Dot)", "RShift"],
+        ["LCtrl", "LGui", "LAlt", "TG(3)", "Space", "No", "MO(2)", "RAlt", "RGui", "RCtrl", "Delete"]
+    ],
+    [
+        ["Escape", "F1", "F2", "F3", "F4", "No", "No", "PrintScreen", "ScrollLock", "Pause", "No"],
+        ["No", "F5", "F6", "F7", "F8", "No", "No", "Insert", "Home", "PageUp", "Enter"],
+        ["LShift", "F9", "F10", "F11", "F12", "No", "No", "Delete", "End", "PageDown", "RShift"],
+        ["LCtrl", "LGui", "LAlt", "TG(3)", "Space", "No", "TG(3)", "RAlt", "RGui", "RCtrl", "No"]
+    ]
 ]
 
 
@@ -38,9 +50,9 @@ enabled = true
 # vddh has an internal voltage divider
 # battery_adc_pin = "vddh"
 # Or
-# battery_adc_pin = "P0_04"
-# adc_divider_measured = 2000
-# adc_divider_total = 2806
+battery_adc_pin = "P0_04"
+adc_divider_measured = 2000
+adc_divider_total = 2820
 
 # charge_state.pin = "P0_25"
 # charge_state.low_active = false
