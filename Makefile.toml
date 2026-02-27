@@ -15,7 +15,7 @@ install_crate = { crate_name = "cargo-binutils", binary = "cargo", test_arg = [
     "--help",
 ] }
 command = "cargo"
-args = ["objcopy", "--release", "--", "-O", "ihex", "rmk-minimi.hex"]
+args = ["objcopy", "--release", "--", "-O", "ihex", "minimi.hex"]
 dependencies = ["build"]
 
 [tasks.uf2]
@@ -27,9 +27,9 @@ command = "cargo"
 args = [
     "hex-to-uf2",
     "--input-path",
-    "rmk-minimi.hex",
+    "minimi.hex",
     "--output-path",
-    "rmk-minimi.uf2",
+    "minimi.uf2",
     "--family",
     "nrf52840",
 ]

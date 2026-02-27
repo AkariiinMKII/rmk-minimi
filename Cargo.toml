@@ -1,5 +1,5 @@
 [package]
-name = "rmk-minimi"
+name = "minimi"
 version = "0.2.0"
 authors = ["Haobo Gu <haobogu@outlook.com>"]
 description = "Keyboard firmware written in Rust"
@@ -55,7 +55,7 @@ json = "0.12"
 const-gen = "1.6"
 
 [[bin]]
-name = "rmk-minimi"
+name = "minimi"
 test = false
 bench = false
 
