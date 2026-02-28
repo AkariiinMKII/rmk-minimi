@@ -1,46 +1,46 @@
 [keyboard]
-name = "MiniMi"
-product_name = "MiniMi"
+name = "S46r"
+product_name = "S46r"
 vendor_id = 0xa1ca
-product_id = 0xa323
+product_id = 0xa546
 manufacturer = "AkaTech"
 chip = "nrf52840"
 
 [matrix]
 # Row and col pins are mandatory
-row_pins = ["P0_12", "P1_06", "P0_03", "P0_31"]
-col_pins = ["P0_30", "P0_29", "P0_02", "P1_13", "P0_28", "P1_04", "P1_02", "P0_22", "P0_20", "P0_17", "P0_15"]
+row_pins = ["P1_11", "P1_10", "P0_03", "P0_28"]
+col_pins = ["P1_13", "P0_02", "P0_29", "P0_31", "P0_15", "P0_17", "P0_20", "P0_22", "P1_00", "P1_02", "P1_04", "P1_06"]
 # RMK uses col2row as the default matrix diode direction, if you want to use a row2col matrix, add `row2col = true`
 # row2col = true
 
 [layout]
 rows = 4
-cols = 11
+cols = 12
 layers = 4
 keymap = [
     [
-        ["Escape", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-        ["Tab", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Enter"],
-        ["LShift", "Z", "X", "C", "V", "B", "N", "M", "Slash", "Up", "RShift"],
-        ["LCtrl", "LGui", "LAlt", "MO(1)", "Space", "No", "MO(2)", "Left", "Down", "Right", "Backspace"]
+        ["Escape",  "Q",    "W",    "E",    "R",  "T",     "Y",    "U",     "I",    "O",      "P",      "Backspace"],
+        ["Tab",     "A",    "S",    "D",    "F",  "G",     "H",    "J",     "K",    "L",      "Enter",  "Delete"   ],
+        ["LShift",  "Z",    "X",    "C",    "V",  "B",     "N",    "M",     "/",    "RShift", "Up",     "PageUp"   ],
+        ["LCtrl",   "LGui", "LAlt", "MO(1)", "No", "Space", "MO(2)", "RCtrl", "Left", "Down",   "Right",  "PageDown" ]
     ],
     [
-        ["Grave", "Kc1", "Kc2", "Kc3", "Kc4", "Kc5", "Kc6", "Kc7", "Kc8", "Kc9", "Kc0"],
-        ["Tab", "No", "No", "No", "No", "Minus", "Equal", "LeftBracket", "RightBracket", "Backslash", "Enter"],
-        ["LShift", "No", "No", "No", "No", "No", "Semicolon", "Quote", "Comma", "Dot", "RShift"],
-        ["LCtrl", "LGui", "LAlt", "MO(1)", "Space", "No", "MO(2)", "RAlt", "RGui", "RCtrl", "Backspace"]
+        ["`",  "1",  "2",  "3",  "4",  "5",  "6",     "7",  "8",  "9",    "0",      "__"     ],
+        ["__", "No", "No", "No", "No", "-",  "=",     "[",  "]",  "\\",   "__",     "__"     ],
+        ["__", "No", "No", "No", "No", "No", ";",     "'",  ",",  ".",    "RShift", "__"     ],
+        ["__", "__", "__", "__", "No", "__", "MO(2)", "__", "__", "__",   "__",     "__"     ]
     ],
     [
-        ["SHIFTED(Grave)", "SHIFTED(Kc1)", "SHIFTED(Kc2)", "SHIFTED(Kc3)", "SHIFTED(Kc4)", "SHIFTED(Kc5)", "SHIFTED(Kc6)", "SHIFTED(Kc7)", "SHIFTED(Kc8)", "SHIFTED(Kc9)", "SHIFTED(Kc0)"],
-        ["CapsLock", "No", "No", "No", "No", "SHIFTED(Minus)", "SHIFTED(Equal)", "SHIFTED(LeftBracket)", "SHIFTED(RightBracket)", "SHIFTED(Backslash)", "Enter"],
-        ["LShift", "No", "No", "No", "No", "No", "SHIFTED(Semicolon)", "SHIFTED(Quote)", "SHIFTED(Comma)", "SHIFTED(Dot)", "RShift"],
-        ["LCtrl", "LGui", "LAlt", "TG(3)", "Space", "No", "MO(2)", "RAlt", "RGui", "RCtrl", "Delete"]
+        ["SHIFTED(`)", "SHIFTED(1)", "SHIFTED(2)", "SHIFTED(3)", "SHIFTED(4)", "SHIFTED(5)", "SHIFTED(6)", "SHIFTED(7)", "SHIFTED(8)", "SHIFTED(9)",  "SHIFTED(0)",  "__"    ],
+        ["CapsLock",   "No",         "No",         "No",         "No",         "SHIFTED(-)", "SHIFTED(=)", "SHIFTED([)", "SHIFTED(])", "SHIFTED(\\)", "Enter",       "Insert"],
+        ["LShift",     "No",         "No",         "No",         "No",         "No",         "SHIFTED(;)", "SHIFTED(')", "SHIFTED(,)", "SHIFTED(.)",  "RShift",      "Home"  ],
+        ["__",         "__",         "__",         "TG(3)",      "No",         "__",         "__",         "RAlt",       "__",         "__",          "__",          "End"   ]
     ],
     [
-        ["Escape", "F1", "F2", "F3", "F4", "No", "No", "PrintScreen", "ScrollLock", "Pause", "No"],
-        ["No", "F5", "F6", "F7", "F8", "No", "No", "Insert", "Home", "PageUp", "Enter"],
-        ["LShift", "F9", "F10", "F11", "F12", "No", "No", "Delete", "End", "PageDown", "RShift"],
-        ["LCtrl", "LGui", "LAlt", "TG(3)", "Space", "No", "TG(3)", "RAlt", "RGui", "RCtrl", "No"]
+        ["Escape", "F1", "F2",  "F3",    "F4", "No", "No",    "PrintScreen", "ScrollLock", "Pause",   "No",     "No"],
+        ["No",     "F5", "F6",  "F7",    "F8", "No", "No",    "Insert",      "Home",       "PageUp",  "Enter",  "No"],
+        ["__",     "F9", "F10", "F11",   "F12", "No", "No",    "Delete",      "End",        "PageDown", "RShift", "No"],
+        ["__",     "__", "__",  "TG(3)", "No", "__", "TG(3)", "__",          "__",         "__",      "__",     "No"]
     ]
 ]
 
@@ -50,7 +50,7 @@ enabled = true
 # vddh has an internal voltage divider
 # battery_adc_pin = "vddh"
 # Or
-battery_adc_pin = "P0_04"
+battery_adc_pin = "P0_05"
 adc_divider_measured = 2000
 adc_divider_total = 2820
 
