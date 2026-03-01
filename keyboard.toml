@@ -17,33 +17,92 @@ col_pins = ["P1_13", "P0_02", "P0_29", "P0_31", "P0_15", "P0_17", "P0_20", "P0_2
 rows = 4
 cols = 12
 layers = 4
-keymap = [
-    [
-        ["Escape",  "Q",    "W",    "E",    "R",  "T",     "Y",    "U",     "I",    "O",      "P",      "Backspace"],
-        ["Tab",     "A",    "S",    "D",    "F",  "G",     "H",    "J",     "K",    "L",      "Enter",  "Delete"   ],
-        ["LShift",  "Z",    "X",    "C",    "V",  "B",     "N",    "M",     "/",    "RShift", "Up",     "PageUp"   ],
-        ["LCtrl",   "LGui", "LAlt", "MO(1)", "No", "Space", "MO(2)", "RCtrl", "Left", "Down",   "Right",  "PageDown" ]
-    ],
-    [
-        ["`",  "1",  "2",  "3",  "4",  "5",  "6",     "7",  "8",  "9",    "0",      "__"     ],
-        ["__", "No", "No", "No", "No", "-",  "=",     "[",  "]",  "\\",   "__",     "__"     ],
-        ["__", "No", "No", "No", "No", "No", ";",     "'",  ",",  ".",    "RShift", "__"     ],
-        ["__", "__", "__", "__", "No", "__", "MO(2)", "__", "__", "__",   "__",     "__"     ]
-    ],
-    [
-        ["SHIFTED(`)", "SHIFTED(1)", "SHIFTED(2)", "SHIFTED(3)", "SHIFTED(4)", "SHIFTED(5)", "SHIFTED(6)", "SHIFTED(7)", "SHIFTED(8)", "SHIFTED(9)",  "SHIFTED(0)",  "__"    ],
-        ["CapsLock",   "No",         "No",         "No",         "No",         "SHIFTED(-)", "SHIFTED(=)", "SHIFTED([)", "SHIFTED(])", "SHIFTED(\\)", "Enter",       "Insert"],
-        ["LShift",     "No",         "No",         "No",         "No",         "No",         "SHIFTED(;)", "SHIFTED(')", "SHIFTED(,)", "SHIFTED(.)",  "RShift",      "Home"  ],
-        ["__",         "__",         "__",         "TG(3)",      "No",         "__",         "__",         "RAlt",       "__",         "__",          "__",          "End"   ]
-    ],
-    [
-        ["Escape", "F1", "F2",  "F3",    "F4", "No", "No",    "PrintScreen", "ScrollLock", "Pause",   "No",     "No"],
-        ["No",     "F5", "F6",  "F7",    "F8", "No", "No",    "Insert",      "Home",       "PageUp",  "Enter",  "No"],
-        ["__",     "F9", "F10", "F11",   "F12", "No", "No",    "Delete",      "End",        "PageDown", "RShift", "No"],
-        ["__",     "__", "__",  "TG(3)", "No", "__", "TG(3)", "__",          "__",         "__",      "__",     "No"]
-    ]
-]
 
+matrix_map = """
+(0,0) (0,1) (0,2) (0,3) (0,4) (0,5) (0,6) (0,7) (0,8) (0,9) (0,10) (0,11) (1,11)
+(1,0) (1,1) (1,2) (1,3) (1,4) (1,5) (1,6) (1,7) (1,8) (1,9) (1,10) (2,11)
+(2,0) (2,1) (2,2) (2,3) (2,4) (2,5) (2,6) (2,7) (2,8) (2,9) (2,10) (3,11)
+(3,0) (3,1) (3,2) (3,3) (3,5)             (3,6) (3,7) (3,8) (3,9)  (3,10)
+"""
+
+# Layer 0: base layer
+# ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+# │ESC│ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │BKS│DEL│
+# ├───┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴───┼───┤
+# │TAB │ A │ S │ D │ F │ G │ H │ J │ K │ L │ENT   │PGU│
+# ├────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴──┬───┼───┤
+# │SFT   │ Z │ X │ C │ V │ B │ N │ M │ / │SFT │ ↑ │PGD│
+# ├───┬──┴┬──┴─┬─┴─┬─┴───┴───┴─┬─┴─┬─┴──┬┴┬───┼───┼───┤
+# │CTL│GUI│ALT │MO1│   SPACE   │MO2│CTL │ │ ← │ ↓ │ → │
+# └───┴───┴────┴───┴───────────┴───┴────┘ └───┴───┴───┘
+[[layer]]
+name = "default"
+keys = """
+Escape  Q      W      E      R      T      Y      U      I      O       P       Backspace  Delete
+Tab     A      S      D      F      G      H      J      K      L       Enter   PageUp
+LShift  Z      X      C      V      B      N      M      /      RShift  Up      PageDown
+LCtrl   LGui   LAlt   MO(1)  Space                MO(2)  RCtrl  Left    Down    Right  
+"""
+
+# Layer 1: numbers and symbols
+# ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+# │ ` │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │BKS│DEL│
+# ├───┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴───┼───┤
+# │TAB │   │   │   │   │ - │ = │ [ │ ] │ \ │ENT   │PGU│
+# ├────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴──┬───┼───┤
+# │SFT   │   │   │   │   │ ; │ ' │ , │ . │SFT │ ↑ │PGD│
+# ├───┬──┴┬──┴─┬─┴─┬─┴───┴───┴─┬─┴─┬─┴──┬┴┬───┼───┼───┤
+# │CTL│GUI│ALT │MO1│   SPACE   │MO2│CTL │ │ ← │ ↓ │ → │
+# └───┴───┴────┴───┴───────────┴───┴────┘ └───┴───┴───┘
+[[layer]]
+name = "nums"
+keys = """
+`       1      2      3      4      5      6      7      8      9       0       ____    ____
+____    No     No     No     No     -      =      [      ]      \\      ____    ____
+____    No     No     No     No     ;      '      comm   .      ____    ____    ____
+____    ____   ____   ____   __________________   ____   ____   ____    ____    ____
+"""
+
+# Layer 2: shifted numbers and symbols
+# ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+# │ ~ │ ! │ @ │ # │ $ │ % │ ^ │ & │ * │ ( │ ) │BKS│DEL│
+# ├───┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴───┼───┤
+# │CAPS│   │   │   │   │ _ │ + │ { │ } │ | │ENT   │HOM│
+# ├────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴──┬───┼───┤
+# │SFT   │   │   │   │   │ : │ " │ < │ > │SFT │ ↑ │END│
+# ├───┬──┴┬──┴─┬─┴─┬─┴───┴───┴─┬─┴─┬─┴──┬┴┬───┼───┼───┤
+# │CTL│GUI│ALT │MO1│   SPACE   │MO2│ALT │ │ ← │ ↓ │ → │
+# └───┴───┴────┴───┴───────────┴───┴────┘ └───┴───┴───┘
+[[layer]]
+name = "shifted_nums"
+keys = """
+SHIFTED(`)  SHIFTED(1)  SHIFTED(2)  SHIFTED(3)  SHIFTED(4)  SHIFTED(5)  SHIFTED(6)  SHIFTED(7)     SHIFTED(8)  SHIFTED(9)  SHIFTED(0)  ____        ____
+CapsLock    No          No          No          No          SHIFTED(-)  SHIFTED(=)  SHIFTED([)     SHIFTED(])  SHIFTED(\\) ____        Home
+LShift      No          No          No          No          SHIFTED(;)  SHIFTED(')  SHIFTED(comm)  SHIFTED(.)  ____        ____        End
+____        ____        ____        ____        ____________________________        ____           RAlt        ____        ____        ____
+"""
+
+# Layer 3: functions and navigation
+# ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+# │ESC│F1 │F2 │F3 │F4 │   │   │BT0│BT1│BT2│CLR│   │INS│
+# ├───┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴───┼───┤
+# │    │F5 │F6 │F7 │F8 │   │   │BT←│BT→│BTS│ENT   │   │
+# ├────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴──┬───┼───┤
+# │SFT   │F9 │F10│F11│F12│   │   │   │   │SFT │ ↑ │   │
+# ├───┬──┴┬──┴─┬─┴─┬─┴───┴───┴─┬─┴─┬─┴──┬┴┬───┼───┼───┤
+# │CTL│GUI│ALT │MO1│   SPACE   │MO2│ALT │ │ ← │ ↓ │ → │
+# └───┴───┴────┴───┴───────────┴───┴────┘ └───┴───┴───┘
+[[layer]]
+name = "functions"
+keys = """
+Escape  F1     F2     F3     F4     No     No     User0    User1    User2   User6   No      Insert
+No      F5     F6     F7     F8     No     No     User3    User4    User5   ____    No
+____    F9     F10    F11    F12    No     No     No       No       ____    ____    No
+____    ____   ____   ____   __________________   ____     ____     ____    ____    ____
+"""
+
+[behavior]
+tri_layer = { upper = 2, lower = 1, adjust = 3 }
 
 [ble]
 enabled = true
