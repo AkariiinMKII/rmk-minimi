@@ -18,22 +18,28 @@ const CYCLE_TICKS: u8 = 10;
 /// Number of supported BLE profiles.
 const MAX_PROFILES: u8 = 3;
 
+// Compile-time checks.
 const _: () = assert!(2 * (MAX_PROFILES as u16) <= CYCLE_TICKS as u16, "MAX_PROFILES too large for animation cycle");
 const _: () = assert!(CYCLE_TICKS as u32 <= u16::BITS, "CYCLE_TICKS too large for u16 mask width");
 
-/// Build toggle bitmask for profile N: N+1 blinks = 2*(N+1) consecutive toggle bits.
+/// Build a toggle bitmask for a given profile.
+/// Profile N blinks N+1 times = 2*(N+1) consecutive toggle bits.
 const fn toggle_mask(profile: u8) -> u16 {
     (1 << (2 * (profile as u16 + 1))) - 1
 }
 
+/// Controller that drives an LED according to the BLE advertising state.
 pub struct BleStateLedController<'d> {
     pin: Output<'d>,
     sub: ControllerSub,
     state: BleState,
     profile: u8,
     tick: u8,
+    /// Pending state update received while advertising; applied at next cycle start.
+    pending_state: Option<(u8, BleState)>,
 }
 
+/// Events processed by this controller.
 pub enum BleLedEvent {
     Tick,
     Controller(ControllerEvent),
@@ -47,6 +53,7 @@ impl<'d> BleStateLedController<'d> {
             state: BleState::None,
             profile: 0,
             tick: 0,
+            pending_state: None,
         };
         this.set_off();
         this
@@ -60,7 +67,6 @@ impl<'d> BleStateLedController<'d> {
         }
     }
 
-    /// Toggle the LED if the current tick is a transition point.
     fn led_blink(&mut self) {
         if toggle_mask(self.profile) & (1u16 << self.tick) != 0 {
             self.pin.toggle();
@@ -74,13 +80,27 @@ impl<'d> Controller for BleStateLedController<'d> {
     async fn process_event(&mut self, event: Self::Event) {
         match event {
             BleLedEvent::Controller(ControllerEvent::BleState(profile, state)) => {
-                self.profile = profile;
-                self.state = state;
-                self.tick = 0;
-                // Ensure known OFF state at animation boundary.
-                self.set_off();
+                if matches!(self.state, BleState::Advertising) {
+                    // Don't interrupt current cycle; store for later.
+                    self.pending_state = Some((profile, state));
+                } else {
+                    // LED off → apply immediately.
+                    self.profile = profile;
+                    self.state = state;
+                    self.tick = 0;
+                    self.set_off();
+                }
             }
             BleLedEvent::Tick => {
+                // At cycle start, apply any pending state.
+                if self.tick == 0 {
+                    if let Some((p, s)) = self.pending_state.take() {
+                        self.profile = p;
+                        self.state = s;
+                        // LED is already off at cycle end.
+                    }
+                }
+
                 if matches!(self.state, BleState::Advertising) && self.profile < MAX_PROFILES {
                     self.led_blink();
                     self.tick = (self.tick + 1) % CYCLE_TICKS;
